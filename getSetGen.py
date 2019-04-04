@@ -34,10 +34,10 @@ writeFile = open("getSetGenFile.txt", "w+")
 j = 0
 for x in instanceVarsArray:
     #print(chr(ord(x[0]) - 32))     
-    writeFile.write("public " + typesArray[j] + " get" + str(chr(ord(x[0]) - 32)) + x[1:len(x)] + "(){ \n \t return" + x + "; \n} \n\n")    
-    print("public " + typesArray[j] + " get" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(){ \n \t return " + x + "; \n} \n\n")
-    writeFile.write("public" + typesArray[j] + "set" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(" + typesArray[j] + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "){ \n \t return " + x + "; \n} \n\n")    
-    print("public void set" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(" + typesArray[j] + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "){ \n \t return " + x + " = " + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "; \n} \n\n")          
+    writeFile.write("public " + typesArray[j] + " get" + str(chr(ord(x[0]) - 32)) + x[1:len(x)] + "(){ \n \treturn" + x + "; \n} \n\n")    
+    print("public " + typesArray[j] + " get" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(){ \n \treturn " + x + "; \n} \n\n")
+    writeFile.write("public" + typesArray[j] + "set" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(" + typesArray[j] + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "){ \n \t" + x + "; \n} \n\n")    
+    print("public void set" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "(" + typesArray[j] + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "){ \n \t" + x + " = " + " new" + str(chr(ord(x[0]) - 32))+ x[1:len(x)] + "; \n} \n\n")          
     j += 1
 
     
