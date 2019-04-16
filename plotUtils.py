@@ -16,6 +16,7 @@ import numpy as np
 #save: a numpy array --> [0: boolean, 1: string path+name, 2: string file type]
 def simplePlot(npArray, plotName, display, save):
     plt.plot(npArray)
+    plt.grid(True)
     plt.title(plotName)
     plt.ylabel('Element Value')
     plt.xlabel('Element Index')
@@ -36,6 +37,7 @@ def simplePlot(npArray, plotName, display, save):
 #save: a numpy array --> [0: boolean, 1: string path, 2: string file type]
 def simplePlot2D(indVar, indVarName, depVar, depVarName, plotName, pointType, display, save):
     plt.plot(indVar, depVar, pointType)
+    plt.grid(True)
     plt.title(plotName)
     plt.ylabel(depVarName)
     plt.xlabel(indVarName)
@@ -59,10 +61,11 @@ def simplePlot2D(indVar, indVarName, depVar, depVarName, plotName, pointType, di
 #save: a numpy array --> [0: boolean, 1: string path, 2: string file type]
 def multiPlot(indVarZ, indVarNameZ, depVarZ, depVarNameZ, numRows, numCols, numPlotZ, plotNameZ, pointTypeZ, display, save):
     fig = plt.figure()
-    fig.subplots_adjust(hspace = 0.5, wspace = 0.5)
+    fig.subplots_adjust(hspace = 1.0, wspace = 1.0)
     for i in range(1, numPlotZ + 1):
         fig.add_subplot(numRows, numCols, i) 
         plt.plot(indVarZ[i - 1], depVarZ[i - 1], pointTypeZ[i - 1])
+        plt.grid(True)
         plt.title(plotNameZ[i - 1])
         plt.ylabel(depVarNameZ[i - 1])
         plt.xlabel(indVarNameZ[i - 1])
@@ -75,20 +78,22 @@ def multiPlot(indVarZ, indVarNameZ, depVarZ, depVarNameZ, numRows, numCols, numP
 
 
 
-save = np.array([True, 'C:/Users/sujoy/Desktop/plot1', '.png'])
+
 
 #1
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot1', '.png'])
 x = np.array([0, 1, 2, 3, 4, 5])
 simplePlot(x, 'Test', True, save)
 
-save = np.array([True, 'C:/Users/sujoy/Desktop/plot2', '.png'])
 #2
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot2', '.png'])
 a = np.array([1, 2, 3, 4])
 b = np.array([1, 4, 9, 16])
 simplePlot2D(a, "independent variable",  b, 'dependent variable', 'Simple 2D Plot', 'ro', True, save)
 
-save = np.array([True, 'C:/Users/sujoy/Desktop/plot3', '.png'])
+
 #3
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot3', '.png'])
 iVarZ = np.array([[1, 2, 3], [1, 2, 3]])
 iVarNameZ = np.array(['inputs', 'inputs'])
 dVarZ = np.array([[1, 4, 9], [1, 8, 27]])
@@ -97,6 +102,6 @@ numRows = 2
 numCols = 1
 numPlotZ = 2
 plotNameZ = np.array(['Squared', 'Cubed'])
-pointTypeZ = np.array(['ro', 'ro'])
+pointTypeZ = np.array(['.r-', '.r-'])
 display = True
 multiPlot(iVarZ, iVarNameZ, dVarZ, dVarNameZ, numRows, numCols, numPlotZ, plotNameZ, pointTypeZ, display, save)
