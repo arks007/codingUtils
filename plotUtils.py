@@ -20,10 +20,10 @@ def simplePlot(npArray, plotName, display, save):
     plt.ylabel('Element Value')
     plt.xlabel('Element Index')
     plt.axis([0, npArray.size - 1, 0, np.amax(npArray)])
+    if(save[0]):
+        plt.savefig(save[1] + save[2], bbox_inches = 'tight')
     if(display):
         plt.show()
-    if(save[0]):
-        plt.savefig(save[1] + save[2], bbox_inches='tight')
 
 
 #indVar: a numpy array representing the x-value of a point
@@ -40,10 +40,10 @@ def simplePlot2D(indVar, indVarName, depVar, depVarName, plotName, pointType, di
     plt.ylabel(depVarName)
     plt.xlabel(indVarName)
     plt.axis([0, np.amax(indVar) + 1, 0, np.amax(depVar) + 1])
+    if(save[0]):
+        plt.savefig(save[1] + save[2], bbox_inches = 'tight')
     if(display):
         plt.show()
-    if(save[0]):
-        plt.savefig(save[1] + save[2], bbox_inches='tight')
 
 #Z suffix reinforces that this is a GENERAL PURPOSE multiple plot generator 
 #it is recommended to use a helper method that will read the parameters off a text file 
@@ -61,38 +61,40 @@ def multiPlot(indVarZ, indVarNameZ, depVarZ, depVarNameZ, numRows, numCols, numP
     fig = plt.figure()
     fig.subplots_adjust(hspace = 0.5, wspace = 0.5)
     for i in range(1, numPlotZ + 1):
-        fig.add_subplot(numCols, numCols, i) 
+        fig.add_subplot(numRows, numCols, i) 
         plt.plot(indVarZ[i - 1], depVarZ[i - 1], pointTypeZ[i - 1])
         plt.title(plotNameZ[i - 1])
         plt.ylabel(depVarNameZ[i - 1])
         plt.xlabel(indVarNameZ[i - 1])
         plt.axis([0, np.amax(indVarZ[i - 1]) + 1, 0, np.amax(depVarZ[i - 1]) + 1])
+    if(save[0]):
+        plt.savefig(save[1] + save[2], bbox_inches = 'tight')
     if(display):
         plt.show()
-    if(save[0]):
-        plt.savefig(save[1] + save[2], bbox_inches='tight')
+    
 
 
 
-save = np.array([False, '', ''])
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot1', '.png'])
 
 #1
 x = np.array([0, 1, 2, 3, 4, 5])
 simplePlot(x, 'Test', True, save)
 
-
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot2', '.png'])
 #2
 a = np.array([1, 2, 3, 4])
 b = np.array([1, 4, 9, 16])
 simplePlot2D(a, "independent variable",  b, 'dependent variable', 'Simple 2D Plot', 'ro', True, save)
 
+save = np.array([True, 'C:/Users/sujoy/Desktop/plot3', '.png'])
 #3
 iVarZ = np.array([[1, 2, 3], [1, 2, 3]])
 iVarNameZ = np.array(['inputs', 'inputs'])
 dVarZ = np.array([[1, 4, 9], [1, 8, 27]])
 dVarNameZ = np.array(['inputs squared', 'inputs cubed'])
-numRows = 1
-numCols = 2
+numRows = 2
+numCols = 1
 numPlotZ = 2
 plotNameZ = np.array(['Squared', 'Cubed'])
 pointTypeZ = np.array(['ro', 'ro'])
